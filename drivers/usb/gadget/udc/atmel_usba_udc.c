@@ -2143,6 +2143,10 @@ static struct usba_ep * atmel_udc_of_init(struct platform_device *pdev,
 	if (!match)
 		return ERR_PTR(-EINVAL);
 
+	// added VoWe 21-07-16, USB Ethernet Gadget testing
+	usba_writel(udc, TST,
+                USBA_BF(SPEED_CFG, USBA_SPEED_CFG_FORCE_FULL));
+
 	udc_config = match->data;
 	udc->ep_prealloc = udc_config->ep_prealloc;
 	udc->errata = udc_config->errata;
